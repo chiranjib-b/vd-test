@@ -39,3 +39,5 @@ app.set('port', (process.env.PORT || 8001));
 server.listen(app.get('port'), function() {
     console.log('VaultDragon KeyStore Manager App started on port ' + app.get('port'));
 });
+
+module.exports = server;

@@ -4,7 +4,7 @@
   "description": "VaultDragon Test Project",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests/testrunner.js"
   },
   "repository": {
     "type": "git",
@@ -28,5 +28,10 @@
     "express-session": "^1.15.6",
     "pg": "^7.7.1",
     "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "supertest": "^3.3.0"
   }
 }

@@ -92,7 +92,8 @@ router.post('/object', (req, res) => {
 	  if (ret) {
 		console.log(ret);
 		var dt = new Date(ret.key_timestamp + '+0000');
-		dt = dt.getTime() / 1000;
+		// adding 1 because the milliseconds are lost while conversion to unix timestamp
+		dt = (dt.getTime() / 1000) + 1;
 		res.send({
 		  "key": ret.vd_key,
 		  "value": ret.vd_value,
