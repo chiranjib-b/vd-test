@@ -107,4 +107,20 @@ router.post('/object', (req, res) => {
   });
 });
 
+/* Cleanup keystore */
+router.post('/deleteobject', (req, res) => {
+  var keyname = req.body.keyname;
+  console.log(`delete from vd_keystore where vd_key = '${keyname}'`);
+  var query = `delete from vd_keystore where vd_key = '${keyname}'`;
+  pool.query(query, (err, db_res) => {
+	if (err){
+	  console.error(`Failed to delete key ${keyname}`);
+	  console.error(err);
+	  res.status(500).send({'Status' : 'Failure', 'Message' : `Failed to delete key ${keyname}`});
+	  return;
+	}
+	res.send({'Status' : 'Success', 'Message' : `Deleted key ${keyname}`});
+  });
+});
+
 module.exports = router;

@@ -42,8 +42,18 @@ values.forEach(keyval => {
 			  num++;
 			  if (res.body.value === keyval[keyname]){
 				done();
-				if (num === values.length)
-				  process.exit(0);
+				if (num === values.length){
+				  console.log(`Deleting key ${keyname}`);
+				  request(app)
+					.post('/deleteobject')
+					.send({keyname:`${keyname}`})
+					.set('Accept', 'application/json')
+					.expect('Content-Type', /json/)
+					.expect(200)
+					.end((err, res) => {
+					  process.exit(0);
+					});
+				}
 			  }
 			  else {
 				throw 'Failed test.';
